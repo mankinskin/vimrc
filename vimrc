@@ -67,9 +67,17 @@ set cursorline      " highlight cursor line
 "set cursorcolumn    " highlight cursor column
 set smarttab		" insert 'tabstop' number of spaces when pressing tab
 set autoindent		" new lines inherit indention from previous lines
+set wildmenu
+set lazyredraw
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set completeopt=longest,menuone
 
-hi CursorLine cterm=NONE ctermbg=black 
+hi CursorLine cterm=NONE ctermbg=Black 
 hi LineNr ctermfg=grey
+hi Pmenu ctermbg=black ctermfg=white
+hi PmenuSel ctermbg=white ctermfg=black
 
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
