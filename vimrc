@@ -42,14 +42,15 @@ if has("autocmd")
 endif
 
 set encoding=utf-8
+set fileencoding=utf-8
 :filetype on
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
 "set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 "set ignorecase		" Do case insensitive matching
-"set smartcase		" Do smart case matching
-"set incsearch		" Incremental search
+set smartcase		" Do smart case matching
+set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
 "set hidden			" Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes)
@@ -79,6 +80,7 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
+set laststatus=2	" always show status line	
 set statusline=
 set statusline+=%#PmenuSel#
 set statusline+=%{StatuslineGit()}
@@ -90,7 +92,6 @@ set statusline+=\ %y
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
 
-set laststatus=2	" always show status line	
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
