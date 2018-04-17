@@ -83,7 +83,7 @@ set statusline=
 set statusline+=%#PmenuSel#
 set statusline+=%{StatuslineGit()}
 set statusline+=%#CursorLine#
-set statusline+=\ %f
+set statusline+=\ %F
 set statusline+=%=
 set statusline+=%#PmenuSel#
 set statusline+=\ %y
