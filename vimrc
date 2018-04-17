@@ -57,7 +57,7 @@ set incsearch		" Incremental search
 set number          " Show Line Numbers
 set linebreak		" Avoid wrapping a line in the middle of a word
 set wrap			" Enable line wrapping
-set title 			" set the window title to reflect the file currnetly being edited
+set title 			" set the window title to reflect the file currently being edited
 "set shiftround      " when shifting lines round the indention to the nearest multiple of 'shiftwidth'
 set shiftwidth=4	" when shifting, indent using 4 spaces
 set tabstop=4		" indent using 4 spaces
@@ -68,7 +68,7 @@ set cursorline      " highlight cursor line
 set smarttab		" insert 'tabstop' number of spaces when pressing tab
 set autoindent		" new lines inherit indention from previous lines
 set wildmenu
-set lazyredraw
+" set lazyredraw
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
