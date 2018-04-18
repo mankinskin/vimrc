@@ -49,14 +49,14 @@ set fileencoding=utf-8
 "set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 "set ignorecase		" Do case insensitive matching
-set smartcase		" Do smart case matching
+"set smartcase		" Do smart case matching
 set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
 "set hidden			" Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes)
 set number          " Show Line Numbers
 set linebreak		" Avoid wrapping a line in the middle of a word
-set wrap			" Enable line wrapping
+"set wrap			" Enable line wrapping
 set title 			" set the window title to reflect the file currently being edited
 "set shiftround      " when shifting lines round the indention to the nearest multiple of 'shiftwidth'
 set shiftwidth=4	" when shifting, indent using 4 spaces
@@ -65,13 +65,13 @@ set tabstop=4		" indent using 4 spaces
 "set expandtab		" tabs are spaces
 set cursorline      " highlight cursor line 
 "set cursorcolumn    " highlight cursor column
-set smarttab		" insert 'tabstop' number of spaces when pressing tab
+"set smarttab		" insert 'tabstop' number of spaces when pressing tab
 set autoindent		" new lines inherit indention from previous lines
 set wildmenu
 " set lazyredraw
-set foldenable
-set foldlevelstart=10
-set foldnestmax=10
+"set foldenable
+"set foldlevelstart=10
+"set foldnestmax=10
 set completeopt=longest,menuone
 
 hi CursorLine cterm=NONE ctermbg=Black 
@@ -88,18 +88,17 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-set laststatus=2	" always show status line	
 set statusline=
 set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#CursorLine#
 set statusline+=\ %F
 set statusline+=%=
-set statusline+=%#PmenuSel#
 set statusline+=\ %y
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
+set statusline+=\ 
 
+
+set laststatus=2	" always show status line	
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
