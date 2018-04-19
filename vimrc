@@ -89,6 +89,8 @@ function! StatuslineGit()
 endfunction
 
 set statusline=
+set statusline+=%#Pmenu#
+set statusline+=%{StatuslineGit()}
 set statusline+=%#PmenuSel#
 set statusline+=\ %F
 set statusline+=%=
