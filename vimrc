@@ -1,14 +1,3 @@
-" All system-wide defaults are set in $VIMRUNTIME/debian.vim and sourced by
-" the call to :runtime you can find below.  If you wish to change any of those
-" settings, you should do it in this file (/etc/vim/vimrc), since debian.vim
-" will be overwritten everytime an upgrade of the vim packages is performed.
-" It is recommended to make changes after sourcing debian.vim since it alters
-" the value of the 'compatible' option.
-
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
-runtime! debian.vim
-
 " Vim will load $VIMRUNTIME/defaults.vim if the user does not have a vimrc.
 " This happens after /etc/vim/vimrc(.local) are loaded, so it will override
 " any settings in these files.
@@ -61,14 +50,14 @@ set title 			" set the window title to reflect the file currently being edited
 "set shiftround      " when shifting lines round the indention to the nearest multiple of 'shiftwidth'
 set shiftwidth=4	" when shifting, indent using 4 spaces
 set tabstop=4		" indent using 4 spaces
-"set softtabstop=4   " tabs are 4 spaces
+set softtabstop=4   " tabs are 4 spaces
 "set expandtab		" tabs are spaces
 set cursorline      " highlight cursor line 
 "set cursorcolumn    " highlight cursor column
 "set smarttab		" insert 'tabstop' number of spaces when pressing tab
 set autoindent		" new lines inherit indention from previous lines
 set wildmenu
-" set lazyredraw
+set lazyredraw
 "set foldenable
 "set foldlevelstart=10
 "set foldnestmax=10
