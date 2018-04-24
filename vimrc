@@ -35,7 +35,7 @@ set fileencoding=utf-8
 :filetype on
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-"set showcmd		" Show (partial) command in status line.
+set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 "set ignorecase		" Do case insensitive matching
 "set smartcase		" Do smart case matching
@@ -57,7 +57,7 @@ set cursorline      " highlight cursor line
 "set smarttab		" insert 'tabstop' number of spaces when pressing tab
 set autoindent		" new lines inherit indention from previous lines
 set wildmenu
-set lazyredraw
+"set lazyredraw
 "set foldenable
 "set foldlevelstart=10
 "set foldnestmax=10
@@ -77,10 +77,11 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
+set laststatus=2	" always show status line	
 set statusline=
-set statusline+=%#Pmenu#
-set statusline+=%{StatuslineGit()}
 set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#Pmenu#
 set statusline+=\ %F
 set statusline+=%=
 set statusline+=\ %y
@@ -88,8 +89,6 @@ set statusline+=\ %p%%
 set statusline+=\ %l:%c
 set statusline+=\ 
 
-
-set laststatus=2	" always show status line	
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
