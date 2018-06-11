@@ -57,7 +57,7 @@ set cursorline      " highlight cursor line
 set smarttab		" insert 'tabstop' number of spaces when pressing tab
 set autoindent		" new lines inherit indention from previous lines
 set wildmenu
-"set lazyredraw
+set lazyredraw
 "set foldenable
 "set foldlevelstart=10
 "set foldnestmax=10
@@ -80,10 +80,10 @@ function! StatuslineGit()
     return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-set laststatus=2	" always show status line	
+set laststatus=2	" always show status line
 set statusline=
 set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
+" set statusline+=%{StatuslineGit()}
 set statusline+=%#Pmenu#
 set statusline+=\ %F
 set statusline+=%=
