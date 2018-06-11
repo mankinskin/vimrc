@@ -21,13 +21,13 @@ set background=dark
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
 if has("autocmd")
-  filetype plugin indent on
+    filetype plugin indent on
 endif
 
 set encoding=utf-8
@@ -51,10 +51,10 @@ set title 			" set the window title to reflect the file currently being edited
 set shiftwidth=4	" when shifting, indent using 4 spaces
 set tabstop=4		" indent using 4 spaces
 set softtabstop=4   " tabs are 4 spaces
-"set expandtab		" tabs are spaces
+set expandtab		" tabs are spaces
 set cursorline      " highlight cursor line 
 "set cursorcolumn    " highlight cursor column
-"set smarttab		" insert 'tabstop' number of spaces when pressing tab
+set smarttab		" insert 'tabstop' number of spaces when pressing tab
 set autoindent		" new lines inherit indention from previous lines
 set wildmenu
 "set lazyredraw
@@ -63,18 +63,21 @@ set wildmenu
 "set foldnestmax=10
 set completeopt=longest,menuone
 
+set list
+set listchars=tab:··   " set tabs to be shown as one · followed through with ·
+
 hi CursorLine cterm=NONE ctermbg=Black 
 hi LineNr ctermfg=grey
 hi Pmenu ctermbg=black ctermfg=white
 hi PmenuSel ctermbg=white ctermfg=black
 
 function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
 
 function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+    let l:branchname = GitBranch()
+    return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
 set laststatus=2	" always show status line	
@@ -92,6 +95,6 @@ set statusline+=\
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
+    source /etc/vim/vimrc.local
 endif
 
