@@ -83,7 +83,7 @@ endfunction
 set laststatus=2	" always show status line
 set statusline=
 set statusline+=%#PmenuSel#
-" set statusline+=%{StatuslineGit()}
+set statusline+=%{StatuslineGit()}
 set statusline+=%#Pmenu#
 set statusline+=\ %F
 set statusline+=%=
