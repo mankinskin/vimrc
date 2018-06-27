@@ -33,29 +33,31 @@ endif
 set encoding=utf-8
 set fileencoding=utf-8
 :filetype on
+
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-set showcmd		" Show (partial) command in status line.
-set showmatch		" Show matching brackets.
-"set ignorecase		" Do case insensitive matching
-"set smartcase		" Do smart case matching
-set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
-"set hidden			" Hide buffers when they are abandoned
-"set mouse=a		" Enable mouse usage (all modes)
+"
+set showcmd         " Show (partial) command in status line.
+set showmatch       " Show matching brackets.
+"set ignorecase     " Do case insensitive matching
+"set smartcase      " Do smart case matching
+set incsearch       " Incremental search
+"set autowrite      " Automatically save before commands like :next and :make
+"set hidden         " Hide buffers when they are abandoned
+"set mouse=a        " Enable mouse usage (all modes)
 set number          " Show Line Numbers
-set linebreak		" Avoid wrapping a line in the middle of a word
-"set wrap			" Enable line wrapping
-set title 			" set the window title to reflect the file currently being edited
-"set shiftround      " when shifting lines round the indention to the nearest multiple of 'shiftwidth'
-set shiftwidth=4	" when shifting, indent using 4 spaces
-set tabstop=4		" indent using 4 spaces
+set linebreak       " Avoid wrapping a line in the middle of a word
+"set wrap           " Enable line wrapping
+set title           " set the window title to reflect the file currently being edited
+set shiftround     " when shifting lines round the indention to the nearest multiple of 'shiftwidth'
+set shiftwidth=4    " when shifting, indent using 4 spaces
+set tabstop=4       " indent using 4 spaces
 set softtabstop=4   " tabs are 4 spaces
-set expandtab		" tabs are spaces
-set cursorline      " highlight cursor line 
-"set cursorcolumn    " highlight cursor column
-set smarttab		" insert 'tabstop' number of spaces when pressing tab
-set autoindent		" new lines inherit indention from previous lines
+set expandtab       " tabs are spaces
+set cursorline      " highlight cursor line
+"set cursorcolumn   " highlight cursor column
+set smarttab        " insert 'tabstop' number of spaces when pressing tab
+set autoindent      " new lines inherit indention from previous lines
 set wildmenu
 set lazyredraw
 "set foldenable
@@ -63,10 +65,10 @@ set lazyredraw
 "set foldnestmax=10
 set completeopt=longest,menuone
 
-set list
-set listchars=tab:··   " set tabs to be shown as one · followed through with ·
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
-hi CursorLine cterm=NONE ctermbg=Black 
+hi CursorLine cterm=NONE ctermbg=Black
 hi LineNr ctermfg=grey
 hi Pmenu ctermbg=black ctermfg=white
 hi PmenuSel ctermbg=white ctermfg=black
@@ -90,11 +92,10 @@ set statusline+=%=
 set statusline+=\ %y
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
-set statusline+=\ 
+set statusline+=\
 
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
     source /etc/vim/vimrc.local
 endif
-
