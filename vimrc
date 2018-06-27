@@ -65,8 +65,8 @@ set lazyredraw
 "set foldnestmax=10
 set completeopt=longest,menuone
 
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
+autocmd FileType cpp,h highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd FileType cpp,h match ExtraWhitespace /\s\+$/
 
 hi CursorLine cterm=NONE ctermbg=Black
 hi LineNr ctermfg=grey
