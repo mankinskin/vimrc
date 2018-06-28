@@ -67,11 +67,11 @@ set completeopt=longest,menuone
 
 autocmd FileType cpp,h highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd FileType cpp,h match ExtraWhitespace /\s\+$/
-
-set list listchars=tab:··
+autocmd FileType cpp,h set list listchars=tab:··
+autocmd FileType cpp,h set textwidth=80
 
 hi CursorLine cterm=NONE ctermbg=Black
-hi LineNr ctermfg=grey
+hi LineNr ctermfg=173
 hi Pmenu ctermbg=black ctermfg=white
 hi PmenuSel ctermbg=white ctermfg=black
 
