@@ -65,10 +65,10 @@ set lazyredraw
 "set foldnestmax=10
 set completeopt=longest,menuone
 
-autocmd FileType cpp,h highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd FileType cpp,h match ExtraWhitespace /\s\+$/
-autocmd FileType cpp,h set list listchars=tab:··
-autocmd FileType cpp,h set textwidth=80
+autocmd FileType c,cpp,python,perl,ruby,javascript,tcl highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd FileType c,cpp,python,perl,ruby,javascript,tcl match ExtraWhitespace /\s\+$/
+autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set list listchars=tab:··
+autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set textwidth=80
 
 hi CursorLine cterm=NONE ctermbg=Black
 hi LineNr ctermfg=173
