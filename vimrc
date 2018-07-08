@@ -1,8 +1,4 @@
-" Vim will load $VIMRUNTIME/defaults.vim if the user does not have a vimrc.
-" This happens after /etc/vim/vimrc(.local) are loaded, so it will override
-" any settings in these files.
-" If you don't want that to happen, uncomment the below line to prevent
-" defaults.vim from being loaded.
+" prevent defaults.vim from being loaded.
 " let g:skip_defaults_vim = 1
 
 " Uncomment the next line to make Vim more Vi-compatible
@@ -10,71 +6,144 @@
 " options, so any other options should be set AFTER setting 'compatible'.
 "set compatible
 
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-syntax on
+""""""""""""""""""""""""""""""
+""" Start Vundle Configuration
 
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-set background=dark
+" required for Vundle
+filetype off
+set nocompatible
 
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
+" set runtime path to include vundle
+set rtp+=~/.vim/bundle/Vundle.Vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.Vim'
+
+" Utility
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+
+" Generic Programming Support
+
+" Markdown / Writing
+
+" Git Support
+
+" Theme / Interface
+
+call vundle#end()
+filetype plugin indent on
+""" End Vundle Configuration
+"""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""
+"" Configuration Section
+
+"" Utility Plugins
+
+" Nerdtree
+map <Tab> :NERDTreeToggle<CR>
+
+" jump to the last position when reopening a file
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" Uncomment the following to have Vim load indentation rules and plugins
-" according to the detected filetype.
-if has("autocmd")
-    filetype plugin indent on
-endif
-
+syntax on
+set background=dark
 set encoding=utf-8
 set fileencoding=utf-8
-:filetype on
 
-" The following are commented out as they cause vim to behave a lot
-" differently from regular Vi. They are highly recommended though.
+" Show (partial) command in status line.
+set showcmd
+
+" Show matching brackets
+set showmatch
+
+" Do case insensitive matching
+" set ignorecase
 "
-set showcmd             " Show (partial) command in status line.
-set showmatch           " Show matching brackets.
-"set ignorecase         " Do case insensitive matching
-"set smartcase          " Do smart case matching
-set incsearch           " Incremental search
-"set autowrite          " Automatically save before commands like :next and :make
-"set hidden             " Hide buffers when they are abandoned
-"set mouse=a            " Enable mouse usage (all modes)
-set number              " Show Line Numbers
-set linebreak           " Avoid wrapping a line in the middle of a word
-"set wrap               " Enable line wrapping
-set title               " set the window title to reflect the file currently being edited
-set shiftround          " when shifting lines round the indention to the nearest multiple of 'shiftwidth'
-set shiftwidth=4        " when shifting, indent using 4 spaces
-set tabstop=8           " indent using 4 spaces
-set softtabstop=4       " tabs are 4 spaces
-set expandtab           " tabs are spaces
-set cursorline          " highlight cursor line
-"set cursorcolumn       " highlight cursor column
-set smarttab            " insert 'tabstop' number of spaces when pressing tab
-set autoindent          " new lines inherit indention from previous lines
-set wildmenu
+" Do smart case matching
+"set smartcase
+"
+" Incremental search
+set incsearch
+
+" Automatically save before commands like :next and :make
+"set autowrite
+
+" Hide buffers when they are abandoned
+"set hidden
+
+" Enable mouse usage (all modes)
+set mouse=a
+
+" Show Line Numbers
+set number
+
+" Avoid wrapping a line in the middle of a word
+set linebreak
+
+" Enable line wrapping
+"set wrap
+
+" set the window title to reflect the file currently being edited
+set title
+
+" when shifting lines round the indention to the nearest multiple of 'shiftwidth'
+set shiftround
+
+" when shifting, indent using 4 spaces
+set shiftwidth=4
+
+" indent using 4 spaces
+set tabstop=8
+
+" tabs are 4 spaces
+set softtabstop=4
+
+" tabs are spaces
+set expandtab
+
+" highlight cursor line
+set cursorline
+
+" highlight cursor column
+"set cursorcolumn
+
+" insert 'tabstop' number of spaces when pressing tab
+set smarttab
+
+" new lines inherit indention from previous lines
+set autoindent          
+
 set lazyredraw
 "set foldenable
 "set foldlevelstart=10
 "set foldnestmax=10
+set wildmenu
 set completeopt=longest,menuone
 
-autocmd FileType c,cpp,python,perl,ruby,javascript,tcl highlight ExtraWhitespace ctermbg=red guibg=red
+" For filetypes c, cpp, py, pl, pm, rb, js and tcl
+" highlight extra whitespaces as red
+autocmd FileType c,cpp,python,perl,ruby,javascript,tcl hi ExtraWhitespace ctermbg=red guibg=red
 autocmd FileType c,cpp,python,perl,ruby,javascript,tcl match ExtraWhitespace /\s\+$/
+" highlight tabs as dots
 autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set list listchars=tab:··
-autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set textwidth=80
+" set textwidth to 80
+autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set tw=80
 
+" set cursor line background black
 hi CursorLine cterm=NONE ctermbg=Black
 hi LineNr ctermfg=173
-hi Pmenu ctermbg=black ctermfg=white
+
+" set menu colors
+hi Pmenu ctermbg=black ctermfg=grey
 hi PmenuSel ctermbg=white ctermfg=black
 
+" get branch name string
 function! GitBranch()
     return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -84,7 +153,9 @@ function! StatuslineGit()
     return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-set laststatus=2	" always show status line
+" set status line
+" always show status line
+set laststatus=2	
 set statusline=
 set statusline+=%#PmenuSel#
 set statusline+=%{StatuslineGit()}
