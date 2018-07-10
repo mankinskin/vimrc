@@ -23,6 +23,7 @@ Plugin 'VundleVim/Vundle.Vim'
 " Utility
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
+Plugin 'jewes/Conque-shell'
 
 " Generic Programming Support
 
