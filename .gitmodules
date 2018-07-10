@@ -13,13 +13,3 @@
 [submodule "bundle/vim-airline-themes"]
 	path = bundle/vim-airline-themes
 	url = https://www.github.com/vim-airline/vim-airline-themes
-[submodule "bundle/badwolf"]
-	path = bundle/badwolf
-	url = https://www.github.com/sjl/badwolf
-[submodule "bundle/Conque-shell"]
-	path = bundle/Conque-shell
-	url = https://www.github.com/jewes/Conque-Shell
-        ignore = dirty
-[submodule "bundle/vim-devicons"]
-	path = bundle/vim-devicons
-	url = https://www.github.com/ryanoasis/vim-devicons

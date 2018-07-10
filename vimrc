@@ -12,6 +12,10 @@
 " required for Vundle
 filetype off
 set nocompatible
+syntax on
+set background=dark
+set encoding=utf-8
+set fileencoding=utf-8
 
 " set runtime path to include vundle
 set rtp+=~/.vim/bundle/Vundle.Vim
@@ -23,7 +27,7 @@ Plugin 'VundleVim/Vundle.Vim'
 " Utility
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
-Plugin 'jewes/Conque-shell'
+"Plugin 'jewes/Conque-shell'
 
 " Generic Programming Support
 
@@ -32,7 +36,7 @@ Plugin 'jewes/Conque-shell'
 " Git Support
 
 " Theme / Interface
-Plugin 'ryanoasis/vim-devicons'
+"Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sjl/badwolf'
@@ -55,11 +59,6 @@ map <Tab> :NERDTreeToggle<CR>
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-
-syntax on
-set background=dark
-set encoding=utf-8
-set fileencoding=utf-8
 
 " Show (partial) command in status line.
 set showcmd
