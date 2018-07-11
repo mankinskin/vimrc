@@ -26,6 +26,7 @@ Plugin 'VundleVim/Vundle.Vim'
 
 " Utility
 Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'jewes/Conque-shell'
 
@@ -54,12 +55,17 @@ filetype plugin indent on
 
 " Nerdtree
 map <Tab> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+
+" Tagbar
+map<C-k> :TagbarToggle<CR>
 
 " jump to the last position when reopening a file
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+set backspace=indent,eol,start
 " Show (partial) command in status line.
 set showcmd
 
@@ -140,7 +146,7 @@ autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set list listchars=tab:·
 autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set tw=80
 
 " set cursor line background black
-hi CursorLine cterm=NONE ctermbg=Black
+hi CursorLine cterm=NONE ctermbg=black
 hi LineNr ctermfg=173
 
 " set menu colors
