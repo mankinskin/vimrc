@@ -42,7 +42,7 @@ Plugin 'ervandew/supertab'
 "Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'sjl/badwolf'
+"Plugin 'sjl/badwolf'
 
 call vundle#end()
 filetype plugin indent on
@@ -135,9 +135,12 @@ set lazyredraw
 "set foldenable
 "set foldlevelstart=10
 "set foldnestmax=10
-set wildmode=longest,list,full
-set wildmenu
-set completeopt=longest,menuone
+set wildmode=longest,full
+set completeopt=longest,menuone,preview
+set complete=.,w,b,i,d,t
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = "<c-p>"
 
 " For filetypes c, cpp, py, pl, pm, rb, js and tcl
 " highlight extra whitespaces as red
@@ -153,8 +156,8 @@ hi CursorLine cterm=NONE ctermbg=black
 hi LineNr ctermfg=173
 
 " set menu colors
-hi Pmenu ctermbg=black ctermfg=grey
-hi PmenuSel ctermbg=white ctermfg=black
+hi Pmenu ctermbg=darkgrey ctermfg=white
+hi PmenuSel ctermbg=143 ctermfg=black
 " set status line
 " always show status line
 set laststatus=2	

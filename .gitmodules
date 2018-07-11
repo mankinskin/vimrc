@@ -13,3 +13,13 @@
 [submodule "bundle/vim-airline-themes"]
 	path = bundle/vim-airline-themes
 	url = https://www.github.com/vim-airline/vim-airline-themes
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = https://www.github.com/Valloric/YouCompleteMe/
+        ignore = dirty
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = https://www.github.com/ervandew/supertab/
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://www.github.com/majutsushi/tagbar/
