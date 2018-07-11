@@ -28,6 +28,7 @@ Plugin 'VundleVim/Vundle.Vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Valloric/YouCompleteMe'
 "Plugin 'jewes/Conque-shell'
 
 " Generic Programming Support
