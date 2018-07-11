@@ -29,6 +29,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'ervandew/supertab'
 "Plugin 'jewes/Conque-shell'
 
 " Generic Programming Support
@@ -134,6 +135,7 @@ set lazyredraw
 "set foldenable
 "set foldlevelstart=10
 "set foldnestmax=10
+set wildmode=longest,list,full
 set wildmenu
 set completeopt=longest,menuone
 
