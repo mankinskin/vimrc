@@ -28,7 +28,7 @@ Plugin 'VundleVim/Vundle.Vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'ervandew/supertab'
 "Plugin 'jewes/Conque-shell'
 
