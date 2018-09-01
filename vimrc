@@ -18,7 +18,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " set runtime path to include vundle
-set rtp+=/etc/vimrc/bundle/Vundle.vim
+set rtp+=bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
