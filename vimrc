@@ -18,7 +18,6 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " set runtime path to include vundle
-set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Utility
