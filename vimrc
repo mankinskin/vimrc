@@ -18,33 +18,30 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " set runtime path to include vundle
-set rtp+=bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Utility
-Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'ervandew/supertab'
-"Plugin 'jewes/Conque-shell'
+Plug 'metalelf0/supertab' " hotfix fork of real 'ervandew/supertab'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --system-libclang'}
+"Plug 'jewes/Conque-shell'
 
 " Generic Programming Support
 
 " Markdown / Writing
 
 " Git Support
+Plug 'tpope/vim-fugitive'
 
 " Theme / Interface
-"Plugin 'ryanoasis/vim-devicons'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'sjl/badwolf'
+"Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'sjl/badwolf'
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 """ End Vundle Configuration
 """""""""""""""""""""""""""""
