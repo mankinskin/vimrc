@@ -102,17 +102,17 @@ set title
 " when shifting lines round the indention to the nearest multiple of 'shiftwidth'
 set shiftround
 
-" when shifting, indent using 4 spaces
-set shiftwidth=4
+" when shifting, indent using x spaces
+set shiftwidth=2
 
-" indent using 4 spaces
-set tabstop=8
+" indent using x spaces
+set tabstop=4
 
-" tabs are 4 spaces
-set softtabstop=4
+" tabs are x spaces
+set softtabstop=2
 
 " tabs are spaces
-set expandtab
+" set expandtab
 
 " highlight cursor line
 set cursorline
@@ -134,15 +134,12 @@ set wildmode=longest,full
 set completeopt=longest,menuone,preview
 set complete=.,w,b,i,d,t
 
-" SuperTab
-let g:SuperTabDefaultCompletionType = "<c-p>"
-
 " For filetypes c, cpp, py, pl, pm, rb, js and tcl
 " highlight extra whitespaces as red
 autocmd FileType c,cpp,python,perl,ruby,javascript,tcl hi ExtraWhitespace ctermbg=red guibg=red
 autocmd FileType c,cpp,python,perl,ruby,javascript,tcl match ExtraWhitespace /\s\+$/
 " highlight tabs as dots
-autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set list listchars=tab:··
+" autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set list listchars=tab:··
 " set textwidth to 80
 autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set tw=80
 
