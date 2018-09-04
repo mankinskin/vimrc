@@ -21,7 +21,6 @@ set fileencoding=utf-8
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Utility
-Plug 'metalelf0/supertab' " hotfix fork of real 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --system-libclang'}
