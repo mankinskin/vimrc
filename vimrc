@@ -48,6 +48,8 @@ filetype plugin indent on
 
 """""""""""""""""""""""""""""
 "" Configuration Section
+" You Complete Me
+let g:ycm_add_preview_to_completeopt = 0
 
 "" Utility Plugins
 
