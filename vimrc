@@ -34,6 +34,7 @@ Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --system-l
 Plug 'tpope/vim-fugitive'
 
 " Theme / Interface
+Plug 'junegunn/goyo.vim'
 "Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
