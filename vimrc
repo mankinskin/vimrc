@@ -167,7 +167,7 @@ set lazyredraw
 "set foldlevelstart=10
 "set foldnestmax=10
 set wildmode=longest,full
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 set complete=.,w,b,i,d,t
 
 " For filetypes c, cpp, py, pl, pm, rb, js and tcl
