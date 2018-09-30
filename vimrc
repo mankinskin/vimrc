@@ -6,19 +6,26 @@
 " options, so any other options should be set AFTER setting 'compatible'.
 "set compatible
 
-""""""""""""""""""""""""""""""
-""" Start Vundle Configuration
 
-" required for Vundle
-filetype off
-set nocompatible
-syntax on
 set background=dark
 set encoding=utf-8
 set fileencoding=utf-8
+set nocompatible
+syntax on
 
-" set runtime path to include vundle
+""""""""""""""""""""""""""""""
+""" Start vim-plug Configuration
+" required for vim-plug
+filetype off
+
+" install vim-plug if needed
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'junegunn/vim-plug'
 
 " Utility
 Plug 'scrooloose/nerdtree'
@@ -48,7 +55,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 filetype plugin indent on
-""" End Vundle Configuration
+""" End vim-plug Configuration
 """""""""""""""""""""""""""""
 
 
