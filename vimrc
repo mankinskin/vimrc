@@ -25,6 +25,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --system-libclang'}
 "Plug 'jewes/Conque-shell'
+" Plug 'ervandew/supertab'	" replaced by YouCompleteMe
+Plug 'tpope/vim-fugitive'
+Plug 'fenetikm/falcon'
+Plug 'sjl/badwolf'
+Plug 'KKPMW/sacredforest-vim'
+Plug 'vim-syntastic/syntastic'
 
 " Generic Programming Support
 
@@ -59,6 +65,21 @@ let NERDTreeShowHidden=1
 
 " Tagbar
 map<C-k> :TagbarToggle<CR>
+
+" Falcon color scheme
+" set termguicolors
+" colorscheme falcon
+" let g:falcon_airline=1
+" let g:airline_theme = 'falcon'
+
+" Badwolf color scheme
+" colorscheme badwolf
+
+" sacred forest color scheme
+" colorscheme sacredforest
+" set termguicolors
+
+""""""""""""""""""""""""""""""
 
 " jump to the last position when reopening a file
 if has("autocmd")
@@ -127,7 +148,7 @@ set cursorline
 set smarttab
 
 " new lines inherit indention from previous lines
-set autoindent          
+set autoindent
 
 set lazyredraw
 "set foldenable
@@ -155,9 +176,9 @@ hi Pmenu ctermbg=darkgrey ctermfg=white
 hi PmenuSel ctermbg=143 ctermfg=black
 " set status line
 " always show status line
-set laststatus=2	
+set laststatus=2
 
-map <C-s> :w<CR> 
+map <C-s> :w<CR>
 map <:-Q> :q
 
 " Source a global configuration file if available
