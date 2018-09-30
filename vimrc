@@ -7,17 +7,11 @@
 "set compatible
 
 
-set background=dark
+set nocompatible
 set encoding=utf-8
 set fileencoding=utf-8
-set nocompatible
-syntax on
-
 """"""""""""""""""""""""""""""
 """ Start vim-plug Configuration
-" required for vim-plug
-filetype off
-
 " install vim-plug if needed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -34,9 +28,6 @@ Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --system-l
 "Plug 'jewes/Conque-shell'
 " Plug 'ervandew/supertab'	" replaced by YouCompleteMe
 Plug 'tpope/vim-fugitive'
-Plug 'fenetikm/falcon'
-Plug 'sjl/badwolf'
-Plug 'KKPMW/sacredforest-vim'
 Plug 'vim-syntastic/syntastic'
 
 " Generic Programming Support
@@ -51,10 +42,12 @@ Plug 'junegunn/goyo.vim'
 "Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'sjl/badwolf'
+Plug 'fenetikm/falcon'
+Plug 'sjl/badwolf'
+Plug 'KKPMW/sacredforest-vim'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
-filetype plugin indent on
 """ End vim-plug Configuration
 """""""""""""""""""""""""""""
 
@@ -73,7 +66,18 @@ let NERDTreeShowHidden=1
 " Tagbar
 map<C-k> :TagbarToggle<CR>
 
-" Falcon color scheme
+" Themes / colorschemes
+set background=dark
+syntax on
+" gruvbox
+" let g:gruvbox_italize_comments=0
+" let g:gruvbox_italic=1	" enable italics
+set termguicolors	" true color support
+colorscheme gruvbox
+let g:gruvbox_color_column ='bg2'
+let g:gruvbox_contrast_dark='soft'
+let g:gruvbox_improved_strings='1'
+" Falcon
 " set termguicolors
 " colorscheme falcon
 " let g:falcon_airline=1
