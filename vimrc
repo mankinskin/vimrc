@@ -54,17 +54,17 @@ call plug#end()
 " Themes / colorschemes
 set background=dark
 syntax on
-set termguicolors	" true color support
+" set termguicolors	" true color support
 " sourcerer
 " colorscheme sourcerer
 
 " gruvbox
-let g:gruvbox_italize_comments=0
-let g:gruvbox_italic=1	" enable italics
 colorscheme gruvbox
+let g:gruvbox_italic=1	" enable italics
+let g:gruvbox_italize_comments=0
 let g:gruvbox_color_column ='bg2'
 let g:gruvbox_contrast_dark='soft'
-let g:gruvbox_improved_strings='1'
+let g:gruvbox_improved_strings=1
 
 " Falcon
 " set termguicolors
