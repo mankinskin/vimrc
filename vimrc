@@ -25,16 +25,12 @@ Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --system-libclang'}
-"Plug 'jewes/Conque-shell'
-" Plug 'ervandew/supertab'	" replaced by YouCompleteMe
-Plug 'tpope/vim-fugitive'
 Plug 'vim-syntastic/syntastic'
-
-" Generic Programming Support
-
-" Markdown / Writing
+" Plug 'ervandew/supertab'	" replaced by YouCompleteMe
+" Plug 'jewes/Conque-shell'
 
 " Git Support
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-fugitive'
 
 " Theme / Interface
@@ -42,10 +38,11 @@ Plug 'junegunn/goyo.vim'
 "Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'fenetikm/falcon'
-Plug 'sjl/badwolf'
-Plug 'KKPMW/sacredforest-vim'
+" Plug 'fenetikm/falcon'
+" Plug 'sjl/badwolf'
+" Plug 'KKPMW/sacredforest-vim'
 Plug 'morhetz/gruvbox'
+" Plug 'xero/sourcerer.vim'
 
 call plug#end()
 """ End vim-plug Configuration
@@ -54,29 +51,21 @@ call plug#end()
 
 """""""""""""""""""""""""""""
 "" Configuration Section
-" You Complete Me
-let g:ycm_add_preview_to_completeopt = 0
-
-"" Utility Plugins
-
-" Nerdtree
-map <Tab> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
-
-" Tagbar
-map<C-k> :TagbarToggle<CR>
-
 " Themes / colorschemes
 set background=dark
 syntax on
-" gruvbox
-" let g:gruvbox_italize_comments=0
-" let g:gruvbox_italic=1	" enable italics
 set termguicolors	" true color support
+" sourcerer
+" colorscheme sourcerer
+
+" gruvbox
+let g:gruvbox_italize_comments=0
+let g:gruvbox_italic=1	" enable italics
 colorscheme gruvbox
 let g:gruvbox_color_column ='bg2'
 let g:gruvbox_contrast_dark='soft'
 let g:gruvbox_improved_strings='1'
+
 " Falcon
 " set termguicolors
 " colorscheme falcon
@@ -89,6 +78,18 @@ let g:gruvbox_improved_strings='1'
 " sacred forest color scheme
 " colorscheme sacredforest
 " set termguicolors
+
+" You Complete Me
+let g:ycm_add_preview_to_completeopt = 0
+
+"" Utility Plugins
+
+" Nerdtree
+map <Tab> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+
+" Tagbar
+map<C-k> :TagbarToggle<CR>
 
 """"""""""""""""""""""""""""""
 
