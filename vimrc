@@ -192,6 +192,9 @@ set laststatus=2
 
 map <C-s> :w<CR>
 map <:-Q> :q
+map <F7> :!make clean<CR>
+map <F8> :!make all -j<CR>
+map <F9> :!make run -j<CR>
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
