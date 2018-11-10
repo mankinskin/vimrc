@@ -172,12 +172,16 @@ set complete=.,w,b,i,d,t
 
 " For filetypes c, cpp, py, pl, pm, rb, js and tcl
 " highlight extra whitespaces as red
-autocmd FileType c,cpp,python,perl,ruby,javascript,tcl hi ExtraWhitespace ctermbg=red guibg=red
-autocmd FileType c,cpp,python,perl,ruby,javascript,tcl match ExtraWhitespace /\s\+$/
-" highlight tabs as dots
-" autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set list listchars=tab:··
+autocmd FileType c,cpp,python,perl,ruby,javascript,tcl,haskell hi ExtraWhitespace ctermbg=red guibg=red
+autocmd FileType c,cpp,python,perl,ruby,javascript,tcl,haskell match ExtraWhitespace /\s\+$/
 " set textwidth to 80
-autocmd FileType c,cpp,python,perl,ruby,javascript,tcl set tw=80
+autocmd FileType c,cpp,python,perl,ruby,javascript,tcl,haskell set tw=80
+" expand tabs for .hs files
+autocmd FileType haskell set softtabstop=4
+autocmd FileType haskell set tabstop=4
+autocmd FileType haskell set expandtab
+" highlight tabs as dots
+autocmd FileType haskell set list listchars=tab:··
 
 " set cursor line background black
 hi CursorLine cterm=NONE ctermbg=black
