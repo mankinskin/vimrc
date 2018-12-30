@@ -31,13 +31,14 @@ Plug 'junegunn/vim-plug'
 " Utility
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
-Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --system-libclang'}
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --system-libclang'}
 Plug 'vim-syntastic/syntastic'
+Plug 'rust-lang/rust.vim'
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'ervandew/supertab'	" replaced by YouCompleteMe
 " Plug 'jewes/Conque-shell'
 
 " Git Support
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-fugitive'
 
 " Theme / Interface
@@ -58,6 +59,23 @@ call plug#end()
 
 """""""""""""""""""""""""""""
 "" Configuration Section
+autocmd BufReadPost *.rs setlocal filetype=rust
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ }
+
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
+" Maps K to hover, gd to goto definition, F2 to rename
+nnoremap <silent> K :call LanguageClient_textDocument_hover()
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()
+
 " Themes / colorschemes
 set background=dark
 syntax on
@@ -158,7 +176,7 @@ set softtabstop=2
 " set expandtab
 
 " highlight cursor line
-set cursorline
+" set cursorline
 
 " highlight cursor column
 "set cursorcolumn
@@ -177,18 +195,19 @@ set wildmode=longest,full
 set completeopt=longest,menuone
 set complete=.,w,b,i,d,t
 
-" For filetypes c, cpp, py, pl, pm, rb, js and tcl
+" For filetypes haskell, rust, c, cpp, ...
 " highlight extra whitespaces as red
-autocmd FileType java,c,cpp,python,perl,ruby,javascript,tcl,haskell hi ExtraWhitespace ctermbg=red guibg=red
-autocmd FileType java,c,cpp,python,perl,ruby,javascript,tcl,haskell match ExtraWhitespace /\s\+$/
+filetype on
+autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell hi ExtraWhitespace ctermbg=red guibg=red
+autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell match ExtraWhitespace /\s\+$/
 " set textwidth to 80
-autocmd FileType java,c,cpp,python,perl,ruby,javascript,tcl,haskell set tw=80
+autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set tw=80
 " expand tabs for .hs files
-autocmd FileType java,c,cpp,python,perl,ruby,javascript,tcl,haskell set softtabstop=4
-autocmd FileType java,c,cpp,python,perl,ruby,javascript,tcl,haskell set tabstop=4
-autocmd FileType java,c,cpp,python,perl,ruby,javascript,tcl,haskell set expandtab
+autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set softtabstop=2
+autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set tabstop=2
+autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set expandtab
 " highlight tabs as dots
-autocmd FileType java,c,cpp,python,perl,ruby,javascript,tcl,haskell set list listchars=tab:··
+autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set list listchars=tab:··
 
 " set cursor line background black
 hi CursorLine cterm=NONE ctermbg=black
