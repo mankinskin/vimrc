@@ -42,7 +42,7 @@ Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-fugitive'
 
 " Theme / Interface
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/goyo.vim'
 "Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -226,7 +226,15 @@ map <F7> :!make clean<CR>
 map <F8> :!make all -j<CR>
 map <F9> :!make run -j<CR>
 
+" add subdirectories of cwd to path
+set path+=**
+
+command! MakeTags !ctags -R .
+
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
     source /etc/vim/vimrc.local
 endif
+
+command! E Explore
+
