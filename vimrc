@@ -1,17 +1,6 @@
-" prevent defaults.vim from being loaded.
-" let g:skip_defaults_vim = 1
-
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-"set compatible
-
-
 set nocompatible
-set encoding=utf-8
-set fileencoding=utf-8
-""""""""""""""""""""""""""""""
-""" Start vim-plug Configuration
+
+"" vim-plug section
 " install vim-plug if needed
 if has('nvim')
   if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -24,106 +13,129 @@ else
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
 endif
-
+""""" PLUG CONFIG
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/vim-plug'
 
-" Utility
-Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --system-libclang'}
-Plug 'vim-syntastic/syntastic'
+Plug 'octol/vim-cpp-enhanced-highlight'
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
+
+
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+Plug 'mankinskin/vim-fish'
+
+Plug 'junegunn/fzf'
+
+Plug 'ap/vim-css-color'
+
 Plug 'rust-lang/rust.vim'
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'ervandew/supertab'	" replaced by YouCompleteMe
-" Plug 'jewes/Conque-shell'
 
-" Git Support
-Plug 'tpope/vim-fugitive'
+Plug 'racer-rust/vim-racer'
+let g:racer_cmd = "/home/linusb/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
 
-" Theme / Interface
-" Plug 'junegunn/goyo.vim'
-"Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Plug 'fenetikm/falcon'
-" Plug 'sjl/badwolf'
-" Plug 'KKPMW/sacredforest-vim'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'sebastianmarkow/deoplete-rust'
+"let g:deoplete#enable_at_startup = 1
+"let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
+"let g:deoplete#sources#rust#rust_source_path='$HOME/.rustup/lib/rustlib/src/rust/src'
+
+"Plug 'prabirshrestha/async.vim'
+"Plug 'prabirshrestha/vim-lsp'
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+"Plug 'vim-syntastic/syntastic'
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_rust_checkers = ["cargo"]
+"let g:autoclose_on = 0
+
+""""" THEMES
 Plug 'morhetz/gruvbox'
-" Plug 'xero/sourcerer.vim'
+"let g:gruvbox_italic=1 " enable italics
+"let g:gruvbox_italize_comments=0
+"let g:gruvbox_color_column ='bg2'
+"let g:gruvbox_contrast_dark='soft'
+"let g:gruvbox_improved_strings=1
+"Plug 'Jorengarenar/vim-darkness'
+"Plug 'fenetikm/falcon'
+"let g:falcon_airline=1
+"let g:airline_theme = 'falcon'
+"Plug 'sjl/badwolf'
+"Plug 'KKPMW/sacredforest-vim'
+"Plug 'xero/sourcerer.vim'
+"Plug 'AlessandroYorba/Alduin'
+"let g:alduin_Shout_Dragon_Aspect = 1 " almost black
+"let g:alduin_Shout_Become_Ethereal = 1 " black
+"let g:alduin_Shout_Fire_Breath = 1 " dark red HL
+"Plug 'AlessandroYorba/Arcadia'
+"let g:arcadia_Sunset = 1
+"let g:arcadia_Twilight = 1
+"let g:arcadia_Midnight = 1
+"let g:arcadia_Pitch = 1
+"Plug 'junegunn/seoul256.vim'
 
-call plug#end()
-""" End vim-plug Configuration
-"""""""""""""""""""""""""""""
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
+""""" UNUNSED PLUGS
 
-"""""""""""""""""""""""""""""
-"" Configuration Section
-autocmd BufReadPost *.rs setlocal filetype=rust
+"Plug 'terryma/vim-smooth-scroll'
+"let scrollspeed=2
+"nnoremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, scrollspeed)<CR>
+"nnoremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, scrollspeed)<CR>
+"nnoremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, scrollspeed*2)<CR>
+"nnoremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, scrollspeed*2)<CR>
+"inoremap <silent> <c-u> <ESC>:call smooth_scroll#up(&scroll, 0, scrollspeed)<CR>i
+"inoremap <silent> <c-d> <ESC>:call smooth_scroll#down(&scroll, 0, scrollspeed)<CR>i
+"inoremap <silent> <c-b> <ESC>:call smooth_scroll#up(&scroll*2, 0, scrollspeed*2)<CR>i
+"inoremap <silent> <c-f> <ESC>:call smooth_scroll#down(&scroll*2, 0, scrollspeed*2)<CR>i
 
-" Required for operations modifying multiple buffers like rename.
-set hidden
+"Plug 'MaskRay/ccls'
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ }
+"Plug 'dense-analysis/ale'
 
-" Automatically start language servers.
-let g:LanguageClient_autoStart = 1
+"Plug 'ryanoasis/vim-devicons'
 
-" Maps K to hover, gd to goto definition, F2 to rename
-nnoremap <silent> K :call LanguageClient_textDocument_hover()
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()
+"Plug 'Yggdroot/indentLine'
+"let g:indentLine_char = '│'
 
-" Themes / colorschemes
-set background=dark
-syntax on
-" set termguicolors	" true color support
-" sourcerer
-" colorscheme sourcerer
+"Plug 'ctrlpvim/ctrlp.vim'
 
-" gruvbox
-colorscheme gruvbox
-let g:gruvbox_italic=1	" enable italics
-let g:gruvbox_italize_comments=0
-let g:gruvbox_color_column ='bg2'
-let g:gruvbox_contrast_dark='soft'
-let g:gruvbox_improved_strings=1
-
-" Falcon
-" set termguicolors
-" colorscheme falcon
-" let g:falcon_airline=1
-" let g:airline_theme = 'falcon'
-
-" Badwolf color scheme
-" colorscheme badwolf
-
-" sacred forest color scheme
-" colorscheme sacredforest
-" set termguicolors
+"Plug 'lervag/vimtex'
+"let g:vimtex_compiler_progname = 'nvr'
 
 " You Complete Me
-let g:ycm_add_preview_to_completeopt = 0
+"Plug 'Valloric/YouCompleteMe', {'do': './install.py --all --clang-completer --system-libclang --rust-completer --java-completer'}
+"let g:ycm_add_preview_to_completeopt = 0
+"let g:ycm_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust'
 
-"" Utility Plugins
+"Plug 'vim-scripts/gtags.vim'
 
-" Nerdtree
-map <Tab> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
+"Plug 'tpope/vim-commentary'
 
-" Tagbar
-map<C-k> :TagbarToggle<CR>
+call plug#end()
 
-""""""""""""""""""""""""""""""
+""""" SETTINGS set
 
-" jump to the last position when reopening a file
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
+set background=dark
 set backspace=indent,eol,start
+
+" spell checking
+" set spell spelllang=en_us
+
 " Show (partial) command in status line.
 set showcmd
 
@@ -131,19 +143,19 @@ set showcmd
 set showmatch
 
 " Do case insensitive matching
-" set ignorecase
-"
+set ignorecase
+
 " Do smart case matching
-"set smartcase
-"
+set smartcase
+
 " Incremental search
 set incsearch
 
-" Automatically save before commands like :next and :make
+" Automatically write before commands like :next and :make
 "set autowrite
 
 " Hide buffers when they are abandoned
-"set hidden
+" set hidden
 
 " Enable mouse usage (all modes)
 set mouse=a
@@ -155,31 +167,25 @@ set number
 set linebreak
 
 " Enable line wrapping
-"set wrap
+set wrap
 
 " set the window title to reflect the file currently being edited
 set title
 
 " when shifting lines round the indention to the nearest multiple of 'shiftwidth'
-set shiftround
+"set shiftround
 
 " when shifting, indent using x spaces
 set shiftwidth=2
 
-" indent using x spaces
-set tabstop=4
-
 " tabs are x spaces
 set softtabstop=2
 
+" indent using x spaces
+set tabstop=2
+
 " tabs are spaces
-" set expandtab
-
-" highlight cursor line
-" set cursorline
-
-" highlight cursor column
-"set cursorcolumn
+set expandtab
 
 " insert 'tabstop' number of spaces when pressing tab
 set smarttab
@@ -188,37 +194,84 @@ set smarttab
 set autoindent
 
 set lazyredraw
+
 "set foldenable
 "set foldlevelstart=10
 "set foldnestmax=10
+
+" scroll n lines
+"set scroll=30
+
+set scrolloff=16
+
+" set textwidth to 80
+set tw=80
+
+" add subdirectories of cwd to path
+set path+=**
+
+let g:netrw_preview = 1
+
+set wildmenu
 set wildmode=longest,full
 set completeopt=longest,menuone
 set complete=.,w,b,i,d,t
 
-" For filetypes haskell, rust, c, cpp, ...
-" highlight extra whitespaces as red
-filetype on
-autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell hi ExtraWhitespace ctermbg=red guibg=red
-autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell match ExtraWhitespace /\s\+$/
-" set textwidth to 80
-autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set tw=80
-" expand tabs for .hs files
-autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set softtabstop=2
-autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set tabstop=2
-autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set expandtab
-" highlight tabs as dots
-autocmd FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell set list listchars=tab:··
+set conceallevel=0
+set exrc " enable external rc files
+set secure
+set iskeyword-=/   " treat / as word separator
+set iskeyword-=_   " treat _ as word separator
 
-" set cursor line background black
-hi CursorLine cterm=NONE ctermbg=black
-hi LineNr ctermfg=173
+set encoding=utf-8
+set fileencoding=utf-8
+filetype plugin on
 
-" set menu colors
-hi Pmenu ctermbg=darkgrey ctermfg=white
-hi PmenuSel ctermbg=143 ctermfg=black
+set showmatch
 " set status line
 " always show status line
 set laststatus=2
+
+" always use system clipboard
+set clipboard=unnamedplus
+
+set autoread
+
+
+""""" AUTO COMMANDS autocmd, au
+" jump to the last position when reopening a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+au BufReadPost *.md setlocal filetype=markdown
+au BufReadPost *.rs setlocal filetype=rust
+au BufReadPost *.go setlocal filetype=go
+au BufReadPost *.vim setlocal filetype=vim
+au BufReadPost *.fish setlocal filetype=fish
+
+" automatically update rusty-tags
+"autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.wvi
+"autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir" . expand('%:p:h') . "&" | redraw!
+augroup reload_vimrc
+  autocmd!
+autocmd BufWritePost *.vim,vimrc,$MYVIMRC ++once silent! source $MYVIMRC | e
+augroup END
+
+au FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell,vim,fish,go match ExtraWhitespace /\s\+$/
+au FileType rust,java,c,cpp,python,perl,ruby,javascript,tcl,haskell,vim,fish set list listchars=tab:··
+au FileType go set expandtab!
+
+" fix garbage characters (caused by terminal response)
+au VimEnter * redraw!
+
+if executable('rls')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+
+""""" COMMAND REMAPS map noremap nnoremap
 
 map <C-s> :w<CR>
 map <:-Q> :q
@@ -226,15 +279,135 @@ map <F7> :!make clean<CR>
 map <F8> :!make all -j<CR>
 map <F9> :!make run -j<CR>
 
-" add subdirectories of cwd to path
-set path+=**
+noremap <C-j> 4j
+noremap <C-k> 4k
 
-command! MakeTags !ctags -R .
-
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-    source /etc/vim/vimrc.local
-endif
-
+" command remaps (! for force)
+command! W w
+command! Q q
+command! Qa qa
+command! QA qa
+command! Wq wq
+command! WQ wq
+command! Wa wa
+command! WA wa
+command! Wqa wqa
+command! WQa wqa
+command! WQA wqa
 command! E Explore
 
+
+" NVIM Config
+tnoremap <Esc> <C-\><C-n> " exit terminal mode with ESC
+"nnoremap <silent> <C-space> :split term://bash<CR>
+" Toggle 'default' terminal
+nnoremap <silent> <Tab> :call ChooseTerm("term-slider", 1)<CR>
+
+"colorscheme darkness
+"colorscheme gruvbox
+"colorscheme falcon
+"colorscheme badwolf
+"colorscheme sacredforest
+"colorscheme sourcerer
+"colorscheme alduin
+"colorscheme arcadia
+"colorscheme seoul256
+
+" highlight cursor line
+set cursorline
+
+" highlight cursor column
+set cursorcolumn
+
+source ~/.vim/colors/miner.vim
+
+function! ChooseTerm(termname, slider)
+  let pane = bufwinnr(a:termname)
+  let buf = bufexists(a:termname)
+  let split_cmd = "below split"
+  if pane > 0 " pane is visible
+    if a:slider > 0
+      :exe pane . "wincmd c"
+    else
+      :exe "e #"
+    endif
+  elseif buf > 0 " buffer is not in pane
+    if a:slider
+      :exe split_cmd
+    endif
+    :exe "buffer " . a:termname
+  else " buffer is not loaded, create
+    if a:slider
+      :exe split_cmd
+    endif
+    :terminal
+    :exe "f " a:termname
+  endif
+endfunction
+
+" smooth scrolling
+function! SmoothScroll(up, s)
+  let screenmove="" " command to move screen
+  let cursormove="" " command to move cursor
+  if a:up
+      let screenmove="normal \<C-y>"
+      let cursormove="normal k"
+  else
+      let screenmove="normal \<C-e>"
+      let cursormove="normal j"
+  endif
+  let s = a:s " total lines to scroll
+  let topline = line("w0") " the first line on the screen
+  let cursorline = line(".") " the cursor line
+  let bottomline = line("w$") " the bottom line on the screen
+  let firstline = 0 " first line of file
+  let lastline = line("$") " last line of file
+  let topoff = topline + &scrolloff " top line that causes auto scroll
+  let bottomoff = bottomline - &scrolloff " top line that causes auto scroll
+
+  let cursorscroll = s " lines to scroll the cursor
+  let screenscroll = s " lines to scroll the screen
+
+  let screenskip = 0 " lines to skip screen scrolling
+  if a:up
+    " scrolling up
+    let screenscroll = min([s, topline])
+    let cursorscroll = min([s, cursorline])
+  else
+    " scrolling down
+    let cursorscroll = min([s, lastline - cursorline])
+    if cursorline < topoff
+      let screenskip = topoff - cursorline
+    endif
+  endif
+  " start scrolling!
+  function! Time(x, s) " waiting time for smoothing
+    let x = a:x
+    let s = a:s
+    let T=3 " maximum sleep ms for smoothing
+    let m=s/3 " number of lines for which smoothing is applied
+    return T*(x-m)*(x-(s-m))/(m*(s-m))
+  endfunction
+
+  let x=0   " counts from 0 to screenscroll
+  while (x < screenscroll) || (x < cursorscroll)
+    let time=Time(x,s)
+    if time > 0
+      exec "sleep ".time."m"
+      redraw
+    end
+    if x < cursorscroll
+      exec cursormove
+    endif
+    if x < screenscroll && x >= screenskip
+      exec screenmove
+    endif
+    let x+=1
+  endwhile
+endfunction
+nnoremap <silent> <C-U> :call SmoothScroll(1, &scroll)<Enter>
+nnoremap <silent> <C-D> :call SmoothScroll(0, &scroll)<Enter>
+nnoremap <silent> <C-k> :call SmoothScroll(1, 4)<Enter>
+nnoremap <silent> <C-j> :call SmoothScroll(0, 4)<Enter>
+inoremap <silent> <C-U> <Esc>:call SmoothScroll(1, &scroll)<Enter>i
+inoremap <silent> <C-D> <Esc>:call SmoothScroll(0, &scroll)<Enter>i
