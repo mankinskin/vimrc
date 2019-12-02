@@ -29,6 +29,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+let g:go_version_warning = 0
 
 Plug 'mankinskin/vim-fish'
 
