@@ -18,7 +18,7 @@ let g:colors_name='miner'
 " general
 hi Normal guibg=#12120d guifg=#e4e4dc
 hi NonText guibg=#090803 guifg=#71644A
-hi NormalNC guibg=#0c0c09 guifg=#999177
+hi NormalNC guibg=#0c0c09
 hi Question guibg=#EEEEEE guifg=#111111
 hi WarningMsg guibg=#EEAA33 guifg=#010101
 hi ErrorMsg guibg=#CE2424 guifg=#EEEEEE
