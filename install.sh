@@ -53,6 +53,11 @@ install_plug() {
     echo "vim-plug installed."
 }
 
+nvim_stdpath() {
+    local kind="$1"
+    nvim --headless "+lua io.write(vim.fn.stdpath('$kind'))" +qall! 2>/dev/null | tr -d '\r'
+}
+
 # ── shared: colors and syntax (both vim and nvim use ~/.vim/) ─────────────────
 
 echo "==> Linking color scheme..."
@@ -67,13 +72,23 @@ done
 # ── neovim ────────────────────────────────────────────────────────────────────
 
 if $HAS_NVIM; then
-    echo "==> Linking Neovim config..."
-    symlink "$SCRIPT_DIR/vimrc" "$HOME/.config/nvim/init.vim"
+    NVIM_CONFIG_DIR="$(nvim_stdpath config)"
+    NVIM_DATA_DIR="$(nvim_stdpath data)"
 
-    install_plug "$HOME/.local/share/nvim/site/autoload/plug.vim"
+    echo "==> Linking Neovim config..."
+    symlink "$SCRIPT_DIR/vimrc" "$NVIM_CONFIG_DIR/init.vim"
+    symlink "$SCRIPT_DIR/colors/miner.vim" "$NVIM_CONFIG_DIR/colors/miner.vim"
+
+    echo "==> Linking Neovim syntax files..."
+    for f in "$SCRIPT_DIR/syntax/"*.vim; do
+        [ -f "$f" ] || continue
+        symlink "$f" "$NVIM_CONFIG_DIR/syntax/$(basename "$f")"
+    done
+
+    install_plug "$NVIM_DATA_DIR/site/autoload/plug.vim"
 
     echo "==> Installing Neovim plugins (PlugInstall)..."
-    nvim --headless +PlugInstall +qall 2>&1
+    nvim --headless -u "$NVIM_CONFIG_DIR/init.vim" +PlugInstall +qall 2>&1
     echo "Neovim plugins installed."
 fi
 
