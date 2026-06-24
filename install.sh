@@ -5,6 +5,55 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+is_windows() {
+    case "$(uname -s)" in
+        MINGW*|MSYS*|CYGWIN*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+create_symlink() {
+    local src="$1" dest="$2"
+
+    if is_windows && command -v powershell &>/dev/null; then
+        local src_win dest_win
+        src_win="$(cygpath -w "$src" 2>/dev/null || printf '%s' "$src")"
+        dest_win="$(cygpath -w "$dest" 2>/dev/null || printf '%s' "$dest")"
+
+        if powershell -NoProfile -Command "\
+            \$ErrorActionPreference = 'Stop'; \
+            New-Item -ItemType SymbolicLink -Path '$dest_win' -Target '$src_win' -Force | Out-Null\
+        " >/dev/null 2>&1; then
+            return 0
+        fi
+
+        if powershell -NoProfile -Command "\
+            \$ErrorActionPreference = 'Stop'; \
+            New-Item -ItemType HardLink -Path '$dest_win' -Target '$src_win' -Force | Out-Null\
+        " >/dev/null 2>&1; then
+            echo "INFO: symlink permission unavailable, created hard link instead: $dest -> $src"
+            return 0
+        fi
+
+        echo "ERROR: failed to create link: $dest -> $src" >&2
+        echo "Tried symbolic link and hard link. Ensure source/target are on the same drive and writable." >&2
+        echo "To force symlinks, enable Developer Mode or run your shell as Administrator." >&2
+        return 1
+    else
+        ln -s "$src" "$dest"
+    fi
+}
+
+same_target() {
+    local src="$1" dest="$2"
+    local src_real="" dest_real=""
+
+    src_real="$(realpath "$src" 2>/dev/null || true)"
+    dest_real="$(realpath "$dest" 2>/dev/null || true)"
+
+    [ -n "$src_real" ] && [ "$src_real" = "$dest_real" ]
+}
+
 # ── detect editors ────────────────────────────────────────────────────────────
 
 HAS_NVIM=false
@@ -22,12 +71,17 @@ fi
 symlink() {
     local src="$1" dest="$2"
     mkdir -p "$(dirname "$dest")"
-    if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$src" ]; then
+
+    if same_target "$src" "$dest"; then
         echo "SKIP: $dest already linked"
+    elif [ -L "$dest" ]; then
+        rm "$dest"
+        create_symlink "$src" "$dest"
+        echo "SET:  $dest -> $src"
     elif [ -e "$dest" ] && [ ! -L "$dest" ]; then
         echo "SKIP: $dest exists and is not a symlink — skipping to avoid overwrite"
     else
-        ln -sf "$src" "$dest"
+        create_symlink "$src" "$dest"
         echo "SET:  $dest -> $src"
     fi
 }

@@ -129,6 +129,11 @@ if has('clipboard')
   endif
 endif
 
+" In VSCode Neovim, use VSCode clipboard API to keep yanks synced.
+if exists('g:vscode') && exists('g:vscode_clipboard')
+  let g:clipboard = g:vscode_clipboard
+endif
+
 " Autocommands
 
 augroup user_restore_cursor
