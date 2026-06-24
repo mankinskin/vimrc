@@ -118,15 +118,9 @@ if has('syntax')
 endif
 filetype plugin indent on
 
-" Prefer the system clipboard when supported.
-if has('clipboard')
-  if exists('&clipboard') && stridx(&clipboard, 'unnamedplus') < 0
-    if has('unnamedplus')
-      set clipboard+=unnamedplus
-    elseif has('unnamed')
-      set clipboard+=unnamed
-    endif
-  endif
+" Prefer the system clipboard.
+if exists('&clipboard')
+  set clipboard=unnamedplus
 endif
 
 " In VSCode Neovim, use VSCode clipboard API to keep yanks synced.
